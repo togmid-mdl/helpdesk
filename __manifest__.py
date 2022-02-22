@@ -14,11 +14,10 @@ Description related to helpdesk.
     'depends': ['base'],
 
     'data': [
-        'security/groups.xml',
         'security/ir.model.access.csv',
         'views/help_desk.xml',
-
     ],
+    'auto_install': False,
 
     # This demo data files will be loaded if db initialize with demo data (commented because file is not added in this example)
     # 'demo': [
