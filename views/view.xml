@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- ....................................FORM VIEW....................................... -->
+    <record id="client_support_form" model="ir.ui.view">
+        <field name="name">client.support.form</field>
+        <field name="model">client.support</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="department"/>
+                        </group>
+                        <group>
+                            <field name="issue_category"/>
+                        </group>
+                        <group>
+                            <field name="issue_priority"/>
+                        </group>
+                        <group>
+                            <field name="issue_state"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+<!-- ............................................................................. -->
+
+
+
+
+
+<!-- ....................................TREE VIEW....................................... -->
+
+    <record id="client_support_tree" model="ir.ui.view">
+        <field name="name">client.support.tree</field>
+        <field name="model">client.support</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="department"/>
+                <field name="issue_category"/>
+                <field name="issue_priority"/>
+                <field name="issue_state"/>
+            </tree>
+        </field>
+    </record>
+<!-- ............................................................................. -->
+
+
+
+
+
+
+<!-- ....................................ACTION....................................... -->
+    <record id="client_support_action" model="ir.actions.act_window">
+        <field name="name">Support</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">client.support</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No complaints yet!
+            </p>
+        </field>
+    </record>
+<!-- ............................................................................. -->
+
+
+
+
+<!-- ....................................PATHING....................................... -->
+
+    <menuitem id="client_support_root"
+        name="Client support"
+        sequence="100"
+        web_icon="mw_client,static/client_help_icon.png"/>
+
+    <menuitem id="client_support_ticket_root"
+        name="Tickets"
+        parent="client_support_root"
+        sequence="100"/>
+
+    <menuitem id="client_support_ticket_result"
+        name="Result"
+        parent="client_support_ticket_root"
+        sequence="100"
+        action="client_support_action"/>
+<!-- ............................................................................. -->
+
+
+
+</odoo>
+
