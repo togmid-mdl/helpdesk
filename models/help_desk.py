@@ -1,19 +1,20 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import api,fields,models
 
 
-class HelpDesk(models.Model):
-    _name = 'help.desk'
-    _description = 'Help desk'
-
-    name = fields.Char('Title', required=True)
-    date_release = fields.Date('Release Date')
-    active = fields.Boolean(default=True)
-    author_ids = fields.Many2many('res.partner', string='Authors')
-    state = fields.Selection(
-        [('available', 'Available'),
-         ('borrowed', 'Borrowed'),
-         ('lost', 'Lost')],
-        'State', default="available")
-    cost_price = fields.Float('Book Cost')
-    category_id = fields.Many2one('library.book.category')
+class ClientSupport(models.Model):
+    _name = "client.support"
+    _description = "Client Support"
+    name = fields.Text('Your name', required=True)
+    department = fields.Char('Your department', required=True)
+    issue_category = fields.Selection([('cat1', 'Category 1'),
+                                ('cat2', 'Category 2'), 
+                                ('cat3', 'Category 3')], 
+                                default='cat1',string="Issue Category",required=True)
+    issue_priority = fields.Selection([('prio1', 'Priority 1'),
+                                ('prio2', 'Priority 2'), 
+                                ('prio3', 'Priority 3')], 
+                                default='prio1',string="Issue Priority",required=True)
+    issue_state = fields.Selection([('draft', 'Draft'),
+                                    ('pending', 'Pending'),
+                                    ('resolve', 'Resolved')],
+                                default="draft", string="Issue State", required=True)
