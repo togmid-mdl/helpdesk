@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acl_desk,help.desk_default,model_help_desk,,1,0,0,0
-acl_desk_librarian,help.desk_librarian,model_help_desk,group_librarian,1,1,1,1
+access_client_support,access_client.support,model_client_support,,1,1,1,1
