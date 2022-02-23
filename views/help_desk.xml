@@ -1,68 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id='library_book_action' model='ir.actions.act_window'>
-        <field name="name">Library Books</field>
-        <field name="res_model">library.book</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <menuitem name="My Library" id="library_base_menu" />
-    <menuitem name="Books" id="library_book_menu" parent="library_base_menu" action="library_book_action"/>
-
-    <!-- Form View -->
-    <record id="library_book_view_form" model="ir.ui.view">
-        <field name="name">Library Book Form</field>
-        <field name="model">library.book</field>
+<!-- ....................................FORM VIEW....................................... -->
+    <record id="client_support_form" model="ir.ui.view">
+        <field name="name">client.support.form</field>
+        <field name="model">client.support</field>
         <field name="arch" type="xml">
             <form>
-                <header>
-                    <button name="make_available" string="Make Available" type="object" />
-                    <button name="make_borrowed" string="Make Borrowed" type="object" />
-                    <button name="make_lost" string="Make Lost" type="object" />
-                    <field name="state" widget="statusbar"/>
-                </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="category_id"/>
-                            <field name="cost_price"/>
                         </group>
                         <group>
-                            <field name="date_release"/>
-                            <field name="active"/>
-                            <field name="author_ids" widget="many2many_tags"/>
+                            <field name="department"/>
+                        </group>
+                        <group>
+                            <field name="issue_category"/>
+                        </group>
+                        <group>
+                            <field name="issue_priority"/>
+                        </group>
+                        <group>
+                            <field name="issue_state"/>
                         </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
+<!-- ............................................................................. -->
 
-    <!-- Tree(list) View -->
-    <record id="library_book_view_tree" model="ir.ui.view">
-        <field name="name">Library Book List</field>
-        <field name="model">library.book</field>
+
+
+
+
+<!-- ....................................TREE VIEW....................................... -->
+
+    <record id="client_support_tree" model="ir.ui.view">
+        <field name="name">client.support.tree</field>
+        <field name="model">client.support</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="date_release"/>
+                <field name="department"/>
+                <field name="issue_category"/>
+                <field name="issue_priority"/>
+                <field name="issue_state"/>
             </tree>
         </field>
     </record>
+<!-- ............................................................................. -->
 
-    <!-- Search View -->
-    <record id="library_book_view_search" model="ir.ui.view">
-        <field name="name">Library Book Search</field>
-        <field name="model">library.book</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name"/>
-                <field name="author_ids"/>
-                <filter string="Without Authors" name="without_author" domain="[('author_ids','=',False)]"/>
-            </search>
+
+
+
+
+
+<!-- ....................................ACTION....................................... -->
+    <record id="client_support_action" model="ir.actions.act_window">
+        <field name="name">Support</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">client.support</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No complaints yet!
+            </p>
         </field>
     </record>
+<!-- ............................................................................. -->
+
+
+
+
+<!-- ....................................PATHING....................................... -->
+
+    <menuitem id="client_support_root"
+        name="Client support"
+        sequence="100"
+        web_icon="mw_client,static/client_help_icon.png"/>
+
+    <menuitem id="client_support_ticket_root"
+        name="Tickets"
+        parent="client_support_root"
+        sequence="100"/>
+
+    <menuitem id="client_support_ticket_result"
+        name="Result"
+        parent="client_support_ticket_root"
+        sequence="100"
+        action="client_support_action"/>
+<!-- ............................................................................. -->
+
+
 
 </odoo>
+
